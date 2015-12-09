@@ -1,0 +1,17 @@
+# Mac
+.DS_Store
+
+# Vim and Emacs
+*.swp
+*~
+
+# http://github.com/github/gitignore/blob/master/ChefCookbook.gitignore
+.vagrant
+/cookbooks
+
+# Bundler
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
