@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
   # あらかじめvagrant-omnibusというプラグインを導入することが必要です。
   # $ vagrant plugin vagrant-omnibus
   # で入ります。
-  config.omnibus.chef_virsion=:latest
+  config.omnibus.chef_version=:latest
   
   # Chef Zeroで./chef以下の内容を仮想マシンに適用させます。
   # あらかじめvagrant-chef-zeroというプラグインを導入する必要があります。
