@@ -7,6 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+setup_centos
+setup_bash
 setup_apache
+setup_php
 setup_firewalld
 
