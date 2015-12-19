@@ -46,6 +46,7 @@ Vagrant.configure(2) do |config|
   # $ vagrant provision
   # を打つことでchefリポジトリの内容をを適用させることができます。
   config.vm.provision "chef_zero" do |chef|
-		  chef.cookbooks_path = "./chef/cookbooks"
+    chef.cookbooks_path = "./chef/cookbooks"
+    chef.run_list = JSON.parse(File.read("./chef/nodes/server.json"))["run_list"]
   end
 end
