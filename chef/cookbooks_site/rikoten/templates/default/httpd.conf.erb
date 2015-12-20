@@ -347,6 +347,12 @@ AddDefaultCharset UTF-8
 #EnableMMAP off
 EnableSendfile on
 
+# VirtualHost
+<VirtualHost *:80>
+	DocumentRoot /var/www/html
+	ServerName <%= node[:core][:fqdn] %>
+</VirtualHost>
+
 # Supplemental configuration
 #
 # Load config files in the "/etc/httpd/conf.d" directory, if any.

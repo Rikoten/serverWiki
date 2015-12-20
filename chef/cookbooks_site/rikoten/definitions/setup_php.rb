@@ -19,12 +19,8 @@ define :setup_php do
 		mode "644"
 		owner "root"
 		group "root"
-		notifies :restart, "service[httpd]"
+		#notifies :restart, "service[httpd]"
 		action :create
-	end
-
-	service "httpd" do
-		action [:restart]
 	end
 
 end
