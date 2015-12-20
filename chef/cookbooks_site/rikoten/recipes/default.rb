@@ -9,7 +9,9 @@
 
 setup_centos
 setup_bash
+setup_sshd
 setup_chrony
+setup_git
 setup_apache
 setup_php
 setup_firewalld
