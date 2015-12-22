@@ -1,3 +1,3 @@
 file_cache_path "/tmp/chef-solo"
-cookbook_path ["/vagrant/chef/cookbooks", "/vagrant/chef/cookbooks_site"]
+cookbook_path ["/vagrant/chef/cookbooks_site", "/vagrant/chef/cookbooks_site/rikoten/berks-cookbooks"]
 

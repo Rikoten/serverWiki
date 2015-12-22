@@ -17,3 +17,5 @@ bin/*
 .kitchen.local.yml
 
 repo/*
+chef/cookbooks_site/rikoten/berks-cookbooks
+Berksfile.lock
