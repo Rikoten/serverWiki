@@ -10,16 +10,14 @@
 setup_centos
 setup_bash
 setup_sshd
+setup_yum
 setup_chrony
 setup_git
 setup_apache
 setup_php
+setup_mysql
 setup_subdomain "www.local.rikoten.com" do
 	path "/vagrant/repo/2015/site"
-end
-
-service "httpd" do
-	action [:restart]
 end
 
 setup_firewalld
