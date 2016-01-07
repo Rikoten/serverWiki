@@ -48,7 +48,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "chef_zero" do |chef|
     chef.cookbooks_path = [
 	  "./chef/cookbooks_site",
-      "./chef/cookbooks_site/rikoten/berks-cookbooks"
+      "./chef/berks-cookbooks"
 	]
     chef.run_list = JSON.parse(File.read("./chef/nodes/server.json"))["run_list"]
   end
