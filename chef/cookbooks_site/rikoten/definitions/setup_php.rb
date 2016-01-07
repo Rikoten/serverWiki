@@ -10,6 +10,8 @@ define :setup_php do
 	pkgs.each do |pkg|
 		yum_package pkg do
 			action :install
+			options '--enablerepo=remi,remi-php70'
+			version '7.0.2-1.el7.remi'
 		end
 	end
 

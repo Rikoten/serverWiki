@@ -22,3 +22,7 @@ end
 
 setup_firewalld
 
+service "httpd" do
+	action [:restart]
+end
+
