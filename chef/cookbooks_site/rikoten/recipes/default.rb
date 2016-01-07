@@ -19,10 +19,12 @@ setup_mysql
 setup_subdomain "www.local.rikoten.com" do
 	path "/vagrant/repo/2015/site"
 end
+setup_subdomain "circle.local.rikoten.com" do
+	path "/vagrant/repo/site2016welcome"
+end
 
 setup_firewalld
 
 service "httpd" do
 	action [:restart]
 end
-
