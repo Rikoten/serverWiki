@@ -19,3 +19,4 @@ bin/*
 repo/*
 chef/berks-cookbooks
 Berksfile.lock
+chef/cookbooks_site/rikoten/berks-cookbooks

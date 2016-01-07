@@ -17,4 +17,9 @@ define :setup_centos do
 		code "hostname #{node[:fqdn]}"
 	end
 
+	# wget
+	yum_package "wget" do
+		action :install
+	end
+
 end
