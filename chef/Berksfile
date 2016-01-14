@@ -1,3 +1,4 @@
 source "https://api.berkshelf.com"
 
 cookbook "firewalld"
+cookbook "postfix", "~3.7.0"
