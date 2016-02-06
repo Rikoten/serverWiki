@@ -1,0 +1,16 @@
+{
+  "name": "rikoten_server",
+  "description": "Server for rikoten.",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+
+  "run_list": [
+    "recipe[rikoten]"
+  ],
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  }
+}
