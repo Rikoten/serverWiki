@@ -1,0 +1,17 @@
+{
+  "name": "postfix_base",
+  "description": "Postfix base system",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[postfix]"
+  ],
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+    "postfix": {
+      "mail_type": "client"
+    }
+  }
+}

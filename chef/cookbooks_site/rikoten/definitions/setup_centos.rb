@@ -22,4 +22,8 @@ define :setup_centos do
 		action :install
 	end
 
+	# mailx
+	yum_package "mailx" do
+		action :install
+	end
 end
