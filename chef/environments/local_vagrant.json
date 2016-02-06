@@ -1,0 +1,8 @@
+{
+  "name": "local_vagrant",
+  "default_attributes":{
+    "core": {
+      "fqdn": "local.rikoten.com"
+    }
+  }
+}

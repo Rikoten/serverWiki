@@ -1,15 +1,16 @@
 define :setup_php do
 	# yumパッケージ名を指定
 	pkgs = [
-		"php",
-		"php-devel",
-		"php-mbstring",
+		"php70-php",
+		"php70-php-devel",
+		"php70-php-mbstring",
 	]
 
 	# インストール
 	pkgs.each do |pkg|
 		yum_package pkg do
 			action :install
+			options '--enablerepo=remi,remi-php70'
 		end
 	end
 

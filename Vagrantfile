@@ -50,6 +50,10 @@ Vagrant.configure(2) do |config|
 	  "./chef/cookbooks_site",
       "./chef/berks-cookbooks"
 	]
-    chef.run_list = JSON.parse(File.read("./chef/nodes/server.json"))["run_list"]
+	chef.roles_path = "./chef/roles"
+	chef.environments_path = "./chef/environments"
+	chef.add_role "rikoten_server"
+	chef.environment = "local_vagrant"
+	chef.node_name = "local.rikoten.com"
   end
 end
