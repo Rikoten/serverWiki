@@ -1,3 +1,8 @@
 {
-  "name": "server_aws"
+  "name": "server_aws",
+  "default_attributes":{
+    "core": {
+      "fqdn": "rikoten.com"
+    }
+  }
 }
