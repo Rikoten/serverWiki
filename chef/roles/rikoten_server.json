@@ -11,6 +11,22 @@
 
   },
   "override_attributes": {
+    "dovecot": {
+      "protocols": {
+        "imap": {
 
+        }
+      },
+      "auth": {
+        "system": {
+          "passdb": {
+            "driver": "pam"
+          },
+          "userdb": {
+            "driver": "passwd"
+          }
+        }
+      }
+    }
   }
 }

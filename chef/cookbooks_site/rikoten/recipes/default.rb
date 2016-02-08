@@ -9,6 +9,7 @@
 
 setup_centos
 setup_bash
+setup_user
 setup_sshd
 setup_yum
 setup_chrony
@@ -22,6 +23,8 @@ end
 setup_subdomain "circle.local.rikoten.com" do
 	path "/vagrant/repo/site2016welcome"
 end
+
+setup_webmail
 
 setup_firewalld
 

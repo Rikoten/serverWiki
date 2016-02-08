@@ -4,14 +4,22 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[postfix]"
+    "recipe[postfix]",
+    "recipe[postfix::sasl_auth]"
   ],
   "default_attributes": {
 
   },
   "override_attributes": {
     "postfix": {
-      "mail_type": "client"
+      "mail_type": "master",
+      "main": {
+        "smtp_sasl_auth_enable": "yes"
+      },
+      "sasl": {
+        "smtp_sasl_passwd": "yaguchisan",
+        "smtp_sasl_user_name": "user_sasl"
+      }
     }
   }
 }

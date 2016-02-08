@@ -10,4 +10,9 @@ define :setup_firewalld do
     zone   'public'
   end
 
+  firewalld_port '143/tcp' do
+    action :add
+    zone   'public'
+  end
+
 end
