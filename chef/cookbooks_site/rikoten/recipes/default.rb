@@ -63,6 +63,12 @@ user "hikalium" do
 	supports :manage_home => true
 	action :create
 end
+directory '/home/hikalium/.ssh' do
+        owner 'hikalium'
+        group 'hikalium'
+        mode '0755'
+        action :create
+end
 file '/home/hikalium/.ssh/authorized_keys' do
 	content 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/VWeaWtwrPRCDeJRYbL909iVzOPjspwWTdKk6W/Kqv7i/dxDXiTkNLlwsjwpi+Qw0M1TOSc1TGyaj2cS8w2X0LmMHJ15pqxlwn3qz9NlPH6CusX3yAWAO9V9iftU1o3ZfZzAwGAPTU0XqqQjROkYlydPDw3LdfoEGxNrjwH1rw148dSlsy4lAjiH3BfXijBEHrHvFqFB67Ws7lQca9dbp1I6We/W4JHazI2FytDSqMqnmMuZD2rm5Jp3mN5Z+KpKm6BBQpwIBWYmD5Fa1o/V5Ch7V27FwSUSxnZY8lyBPDen6LM35ZKTBuxU6wUsxXc2SbIXFwibljKvas8y6euuT hikalium@test.rikoten.com'
 	mode '0644'
