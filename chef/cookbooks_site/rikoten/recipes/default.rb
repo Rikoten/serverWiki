@@ -63,6 +63,12 @@ user "hikalium" do
 	supports :manage_home => true
 	action :create
 end
+file '/home/hikalium/.ssh/authorized_keys' do
+	content 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/VWeaWtwrPRCDeJRYbL909iVzOPjspwWTdKk6W/Kqv7i/dxDXiTkNLlwsjwpi+Qw0M1TOSc1TGyaj2cS8w2X0LmMHJ15pqxlwn3qz9NlPH6CusX3yAWAO9V9iftU1o3ZfZzAwGAPTU0XqqQjROkYlydPDw3LdfoEGxNrjwH1rw148dSlsy4lAjiH3BfXijBEHrHvFqFB67Ws7lQca9dbp1I6We/W4JHazI2FytDSqMqnmMuZD2rm5Jp3mN5Z+KpKm6BBQpwIBWYmD5Fa1o/V5Ch7V27FwSUSxnZY8lyBPDen6LM35ZKTBuxU6wUsxXc2SbIXFwibljKvas8y6euuT hikalium@test.rikoten.com'
+	mode '0644'
+	owner 'hikalium'
+	group 'hikalium'
+end
 group "wheel" do
 	action [:modify]
 	members ["hikalium"]
@@ -190,22 +196,18 @@ yum_package "mysql-community-server" do
 	options "--enablerepo=mysql57-community"
 end
 service "mysqld" do
-	action [:stop, :enable]
+	action [:enable]
 end
 template "/etc/my.cnf" do
 	source "my.cnf.erb"
 	mode "644"
 	owner "root"
 	group "root"
-	notifies :start, "service[mysqld]"
+	notifies :restart, "service[mysqld]", :immediately
 	action :create
 	variables({
 		:c_opt => "skip-grant-tables\nskip-networking",
 	})
-end
-# 一度起動
-service "mysqld" do
-	action [:start]
 end
 # rootパスワードを変更
 bash 'set_mysql_root_pass' do
@@ -222,15 +224,11 @@ template "/etc/my.cnf" do
 	mode "644"
 	owner "root"
 	group "root"
-	notifies :start, "service[mysqld]"
+	notifies :restart, "service[mysqld]", :immediately
 	action :create
 	variables({
 		:c_opt => "",
 	})
-end
-# 通常起動する
-service "mysqld" do
-	action [:start]
 end
 
 #
