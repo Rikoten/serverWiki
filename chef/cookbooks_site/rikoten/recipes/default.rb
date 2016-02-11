@@ -158,9 +158,23 @@ template "/etc/chrony.conf" do
 end
 
 #
+# letsencrypt導入
+#
+yum_package "letsencrypt" do
+	action :install
+	options '--enablerepo=epel'
+end
+
+#
 # apache(Webサーバー)導入・設定
 #
 yum_package "httpd" do
+	action :install
+end
+yum_package "openssl" do
+	action :install
+end
+yum_package "mod_ssl" do
 	action :install
 end
 template "/etc/httpd/conf/httpd.conf" do

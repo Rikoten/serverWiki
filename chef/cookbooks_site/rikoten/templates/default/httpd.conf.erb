@@ -352,6 +352,14 @@ EnableSendfile on
 	DocumentRoot /var/www/html
 	ServerName <%= node[:core][:fqdn] %>
 </VirtualHost>
+<VirtualHost *:443>
+	DocumentRoot /var/www/html
+	ServerName <%= node[:core][:fqdn] %>
+	SSLEngine on
+	SSLCertificateFile /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/cert.pem
+	SSLCertificateKeyFile /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/privkey.pem
+	SSLCertificateChainFile /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/chain.pem
+</VirtualHost>
 
 # Supplemental configuration
 #
