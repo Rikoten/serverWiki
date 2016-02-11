@@ -1,3 +1,14 @@
+
+#
+# firewalldインストール
+#
+yum_package "firewalld" do
+	action :install
+end
+service "firewalld" do
+	action [:enable, :start]
+end
+
 #
 # サーバー基本設定
 #
@@ -154,9 +165,23 @@ template "/etc/chrony.conf" do
 end
 
 #
+# letsencrypt導入
+#
+yum_package "letsencrypt" do
+	action :install
+	options '--enablerepo=epel'
+end
+
+#
 # apache(Webサーバー)導入・設定
 #
 yum_package "httpd" do
+	action :install
+end
+yum_package "openssl" do
+	action :install
+end
+yum_package "mod_ssl" do
 	action :install
 end
 template "/etc/httpd/conf/httpd.conf" do
@@ -284,6 +309,9 @@ end
 yum_package "cyrus-sasl" do
 	action :install
 end
+yum_package "cyrus-sasl-plain" do
+	action :install
+end
 template "/etc/dovecot/conf.d/10-mail.conf" do
 	source "dovecot_10-mail.conf.erb"
 	mode "644"
@@ -378,8 +406,12 @@ firewalld_service 'https' do
 	action :add
 	zone   'public'
 end
-firewalld_port '143/tcp' do
-	# IMAP
+#firewalld_port '143/tcp' do
+#	# IMAP
+#	action :add
+#	zone   'public'
+#end
+firewalld_service 'smtp' do
 	action :add
 	zone   'public'
 end

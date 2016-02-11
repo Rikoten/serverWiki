@@ -5,6 +5,7 @@
   "json_class": "Chef::Role",
 
   "run_list": [
+    "recipe[selinux::disabled]",
     "recipe[rikoten]"
   ],
   "default_attributes": {

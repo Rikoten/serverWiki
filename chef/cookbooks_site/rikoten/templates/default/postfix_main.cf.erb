@@ -3,7 +3,7 @@ command_directory = /usr/sbin
 daemon_directory = /usr/libexec/postfix
 data_directory = /var/lib/postfix
 mail_owner = postfix
-myhostname = test.rikoten.com
+myhostname = <%= node[:core][:fqdn] %>
 myorigin = $mydomain
 inet_interfaces = all
 inet_protocols = all

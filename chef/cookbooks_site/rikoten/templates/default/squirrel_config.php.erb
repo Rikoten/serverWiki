@@ -93,7 +93,7 @@ $provider_uri = 'http://squirrelmail.org/';
  * Example: In bob@example.com, example.com is the domain.
  * @global string $domain
  */
-$domain = 'local.rikoten.com';
+$domain = '<%= node[:core][:fqdn] %>';
 
 /**
  * Time offset inversion
