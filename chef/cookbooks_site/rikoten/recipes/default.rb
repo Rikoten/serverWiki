@@ -288,6 +288,9 @@ end
 yum_package "cyrus-sasl" do
 	action :install
 end
+yum_package "cyrus-sasl-plain" do
+	action :install
+end
 template "/etc/dovecot/conf.d/10-mail.conf" do
 	source "dovecot_10-mail.conf.erb"
 	mode "644"
@@ -382,8 +385,12 @@ firewalld_service 'https' do
 	action :add
 	zone   'public'
 end
-firewalld_port '143/tcp' do
-	# IMAP
+#firewalld_port '143/tcp' do
+#	# IMAP
+#	action :add
+#	zone   'public'
+#end
+firewalld_service 'smtp' do
 	action :add
 	zone   'public'
 end
