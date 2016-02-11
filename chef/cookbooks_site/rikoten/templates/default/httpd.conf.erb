@@ -352,6 +352,8 @@ EnableSendfile on
 	DocumentRoot /var/www/html
 	ServerName <%= node[:core][:fqdn] %>
 </VirtualHost>
+
+<% if File.exists?("/etc/letsencrypt/live/" + node[:core][:fqdn] + "/cert.pem") then %>
 <VirtualHost *:443>
 	DocumentRoot /var/www/html
 	ServerName <%= node[:core][:fqdn] %>
@@ -360,6 +362,7 @@ EnableSendfile on
 	SSLCertificateKeyFile /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/privkey.pem
 	SSLCertificateChainFile /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/chain.pem
 </VirtualHost>
+<% end %>
 
 # Supplemental configuration
 #
