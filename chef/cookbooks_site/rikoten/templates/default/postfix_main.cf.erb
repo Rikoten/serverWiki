@@ -14,6 +14,16 @@ alias_database = hash:/etc/aliases
 home_mailbox = Maildir/
 smtpd_banner = $myhostname ESMTP $mail_name
 
+# SMTP settings
+smtp_tls_security_level = may
+smtp_tls_loglevel = 1
+smtpd_use_tls = yes
+smtpd_tls_cert_file = /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/fullchain.pem
+smtpd_tls_key_file = /etc/letsencrypt/live/<%= node[:core][:fqdn] %>/privkey.pem
+smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_scache
+smtpd_tls_loglevel = 1
+smtpd_tls_received_header = yes
+
 # SASL settings
 smtpd_sasl_auth_enable = yes
 smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd

@@ -296,6 +296,14 @@ template "/etc/postfix/main.cf" do
 	notifies :restart, "service[postfix]"
 	action :create
 end
+template "/etc/postfix/master.cf" do
+	source "postfix_master.cf.erb"
+	mode "644"
+	owner "root"
+	group "root"
+	notifies :restart, "service[postfix]"
+	action :create
+end
 
 #
 # Dovecot(POP/IMAPサーバー)導入・設定
@@ -411,6 +419,11 @@ end
 #	action :add
 #	zone   'public'
 #end
+firewalld_port '465/tcp' do
+	# SMTPS
+	action :add
+	zone   'public'
+end
 firewalld_service 'smtp' do
 	action :add
 	zone   'public'
