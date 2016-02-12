@@ -369,8 +369,8 @@ bash 'extract_sqmail' do
 	user "root"
 	group "root"
 	code <<-EOH
-		tar xzf /vagrant/chef/cookbooks_site/rikoten/files/default/squirrelmail-webmail-1.4.22.tar.gz
-		mv squirrelmail-webmail-1.4.22 webmail
+		tar xzf /vagrant/chef/cookbooks_site/rikoten/files/default/squirrelmail-webmail-1.4.22-ja.tar.gz
+		mv squirrelmail-webmail-1.4.22-ja webmail
 		chown -R apache:apache webmail
 	EOH
 	not_if { ::File.exists?("/var/www/html/webmail") }
