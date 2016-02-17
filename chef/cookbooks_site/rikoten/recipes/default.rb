@@ -229,54 +229,65 @@ end
 #
 # mysql導入・設定
 #
-yum_package "mysql-community-server" do
-	action :install
-	options "--enablerepo=mysql57-community"
-end
-service "mysqld" do
-	action [:enable]
-end
-template "/etc/my.cnf" do
-	source "my.cnf.erb"
-	mode "644"
-	owner "root"
-	group "root"
-	notifies :restart, "service[mysqld]", :immediately
-	action :create
-	variables({
-		:c_opt => "skip-grant-tables\nskip-networking",
-	})
-end
-# rootパスワードを変更
-bash 'set_mysql_root_pass' do
-	user 'mysql'
-	code <<-EOC
-		mysql -u root <<< "UPDATE mysql.user SET authentication_string=PASSWORD('rikotenMySQL') WHERE User='root';\nFLUSH PRIVILEGES;\n"
-	EOC
-	returns [0]
-	retries 3
-end
-# 設定ファイルを通常モードに書き換え
-template "/etc/my.cnf" do
-	source "my.cnf.erb"
-	mode "644"
-	owner "root"
-	group "root"
-	notifies :restart, "service[mysqld]", :immediately
-	action :create
-	variables({
-		:c_opt => "",
-	})
+
+passForMySQL="rikotenMySQL"
+
+result = shell_out('MYSQL_PWD="'+passForMySQL+'" mysql -u root -N -e "" --connect-expired-password')
+
+unless result == 0 then
+	yum_package "mysql-community-server" do
+		action :install
+		options "--enablerepo=mysql57-community"
+	end
+	service "mysqld" do
+		action [:enable]
+	end
+	template "/etc/my.cnf" do
+		source "my.cnf.erb"
+		mode "644"
+		owner "root"
+		group "root"
+		notifies :restart, "service[mysqld]", :immediately
+		action :create
+		variables({
+			:c_opt => "skip-grant-tables\nskip-networking",
+		})
+	end
+	# rootパスワードを変更
+	bash 'set_mysql_root_pass' do
+		user 'mysql'
+		code <<-EOC
+			mysql -u root <<< "UPDATE mysql.user SET authentication_string=PASSWORD('rikotenMySQL') WHERE User='root';\nFLUSH PRIVILEGES;\n"
+		EOC
+		returns [0]
+		retries 3
+	end
+	# 設定ファイルを通常モードに書き換え
+	template "/etc/my.cnf" do
+		source "my.cnf.erb"
+		mode "644"
+		owner "root"
+		group "root"
+		notifies :restart, "service[mysqld]", :immediately
+		action :create
+		variables({
+			:c_opt => "",
+		})
+	end
 end
 
 #
 # サブドメインのVirtualHost設定
 #
-setup_subdomain "www.local.rikoten.com" do
+setup_subdomain "www" do
 	path "/vagrant/repo/2015/site"
 end
-setup_subdomain "circle.local.rikoten.com" do
+setup_subdomain "circle" do
 	path "/vagrant/repo/site2016welcome"
+end
+setup_subdomain "admin" do
+	path "/var/www/admin"
+	requireSSL true
 end
 
 #
@@ -401,6 +412,18 @@ cookbook_file '/var/www/html/webmail/images/logo01.png' do
 	group 'apache'
 	mode '0600'
 	action :create
+end
+
+#
+# munin(サーバー状態監視)導入・設定
+#
+yum_package "munin" do
+	action :install
+	options "--enablerepo=epel"
+end
+yum_package "munin-node" do
+	action :install
+	options "--enablerepo=epel"
 end
 
 #

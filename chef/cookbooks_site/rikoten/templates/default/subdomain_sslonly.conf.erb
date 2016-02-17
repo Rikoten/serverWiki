@@ -1,0 +1,29 @@
+<Directory "<%= @path %>">
+	SSLRequireSSL
+	Options FollowSymLinks Multiviews
+	Require all granted
+</Directory>
+
+<VirtualHost *:80>
+	ServerName <%= @domain %>
+	Redirect 403 /
+</VirtualHost>
+
+<% if File.exists?("/etc/letsencrypt/live/" + @domain + "/cert.pem") then %>
+<VirtualHost *:443>
+	DocumentRoot <%= @path %>
+	ServerName <%= @domain %>
+	SSLEngine on
+	SSLCertificateFile /etc/letsencrypt/live/<%= @domain %>/cert.pem
+	SSLCertificateKeyFile /etc/letsencrypt/live/<%= @domain %>/privkey.pem
+	SSLCertificateChainFile /etc/letsencrypt/live/<%= @domain %>/chain.pem
+</VirtualHost>
+<% elsif File.exists?("/vagrant/chef/cookbooks_site/rikoten/files/default/SSLCerts/any.local.rikoten.com/cert.pem") then %>
+<VirtualHost *:443>
+	DocumentRoot <%= @path %>
+	ServerName <%= @domain %>
+	SSLEngine on
+	SSLCertificateFile /vagrant/chef/cookbooks_site/rikoten/files/default/SSLCerts/any.local.rikoten.com/cert.pem
+	SSLCertificateKeyFile /vagrant/chef/cookbooks_site/rikoten/files/default/SSLCerts/any.local.rikoten.com/privkey.pem
+</VirtualHost>
+<% end %>
