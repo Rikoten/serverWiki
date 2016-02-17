@@ -69,25 +69,6 @@ end
 #
 # UNIXユーザー追加
 #
-
-#user "hikalium" do
-#	password "$1$E5n1H2ql$2WTJjgxTLuTMb1AflY9O1/"
-#	supports :manage_home => true
-#	action :create
-#end
-#directory '/home/hikalium/.ssh' do
-#        owner 'hikalium'
-#        group 'hikalium'
-#        mode '0755'
-#        action :create
-#end
-#file '/home/hikalium/.ssh/authorized_keys' do
-#	content 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/VWeaWtwrPRCDeJRYbL909iVzOPjspwWTdKk6W/Kqv7i/dxDXiTkNLlwsjwpi+Qw0M1TOSc1TGyaj2cS8w2X0LmMHJ15pqxlwn3qz9NlPH6CusX3yAWAO9V9iftU1o3ZfZzAwGAPTU0XqqQjROkYlydPDw3LdfoEGxNrjwH1rw148dSlsy4lAjiH3BfXijBEHrHvFqFB67Ws7lQca9dbp1I6We/W4JHazI2FytDSqMqnmMuZD2rm5Jp3mN5Z+KpKm6BBQpwIBWYmD5Fa1o/V5Ch7V27FwSUSxnZY8lyBPDen6LM35ZKTBuxU6wUsxXc2SbIXFwibljKvas8y6euuT hikalium@test.rikoten.com'
-#	mode '0644'
-#	owner 'hikalium'
-#	group 'hikalium'
-#end
-
 setup_user "hikalium" do
 	password "$1$E5n1H2ql$2WTJjgxTLuTMb1AflY9O1/"
 	rsakey "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/VWeaWtwrPRCDeJRYbL909iVzOPjspwWTdKk6W/Kqv7i/dxDXiTkNLlwsjwpi+Qw0M1TOSc1TGyaj2cS8w2X0LmMHJ15pqxlwn3qz9NlPH6CusX3yAWAO9V9iftU1o3ZfZzAwGAPTU0XqqQjROkYlydPDw3LdfoEGxNrjwH1rw148dSlsy4lAjiH3BfXijBEHrHvFqFB67Ws7lQca9dbp1I6We/W4JHazI2FytDSqMqnmMuZD2rm5Jp3mN5Z+KpKm6BBQpwIBWYmD5Fa1o/V5Ch7V27FwSUSxnZY8lyBPDen6LM35ZKTBuxU6wUsxXc2SbIXFwibljKvas8y6euuT hikalium@test.rikoten.com"
@@ -117,6 +98,10 @@ end
 #
 # yumの設定と各種リポジトリ追加
 #
+yum_package "yum-plugin-fastestmirror" do
+	action :install
+end
+
 bash 'add_repo_mysql' do
 	user 'root'
 	code <<-EOC
@@ -234,7 +219,7 @@ passForMySQL="rikotenMySQL"
 
 result = shell_out('MYSQL_PWD="'+passForMySQL+'" mysql -u root -N -e "" --connect-expired-password')
 
-unless result == 0 then
+unless result.exitstatus == 0 then
 	yum_package "mysql-community-server" do
 		action :install
 		options "--enablerepo=mysql57-community"
@@ -257,7 +242,7 @@ unless result == 0 then
 	bash 'set_mysql_root_pass' do
 		user 'mysql'
 		code <<-EOC
-			mysql -u root <<< "UPDATE mysql.user SET authentication_string=PASSWORD('rikotenMySQL') WHERE User='root';\nFLUSH PRIVILEGES;\n"
+			mysql -u root <<< "UPDATE mysql.user SET authentication_string=PASSWORD('#{passForMySQL}') WHERE User='root';\nFLUSH PRIVILEGES;\n"
 		EOC
 		returns [0]
 		retries 3
@@ -277,6 +262,23 @@ unless result == 0 then
 end
 
 #
+# Digest認証ファイルを配置
+#
+directory '/etc/httpd/digestfile' do
+	owner 'root'
+	group 'root'
+	mode '0755'
+	action :create
+end
+cookbook_file '/etc/httpd/digestfile/admin' do
+	source 'admin_htdigest'
+	owner 'root'
+	group 'root'
+	mode '0644'
+	action :create
+end
+
+#
 # サブドメインのVirtualHost設定
 #
 setup_subdomain "www" do
@@ -285,11 +287,29 @@ end
 setup_subdomain "circle" do
 	path "/vagrant/repo/site2016welcome"
 end
+# admin
 setup_subdomain "admin" do
 	path "/var/www/admin"
 	requireSSL true
 end
-
+template "/var/www/admin/.htaccess" do
+	source "digest_auth_htaccess.erb"
+	mode "644"
+	owner "root"
+	group "root"
+	action :create
+	variables({
+		:authName => "admin.rikoten.com",
+		:authUserFile => "/etc/httpd/digestfile/admin"
+	})
+end
+template "/var/www/admin/index.php" do
+	source "admin_index.php.erb"
+	mode "644"
+	owner "apache"
+	group "apache"
+	action :create
+end
 #
 # Postfix（メールサーバー）
 #
