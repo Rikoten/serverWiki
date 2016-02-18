@@ -195,11 +195,13 @@ pkgs = [
 	"php70-php",
 	"php70-php-devel",
 	"php70-php-mbstring",
+	"php70-php-pdo",
+	"php70-php-mysqlnd"
 ]
 pkgs.each do |pkg|
 	yum_package pkg do
 		action :install
-		options '--enablerepo=remi,remi-php70'
+		options '--enablerepo=remi'
 	end
 end
 template "/etc/php.ini" do
@@ -282,10 +284,10 @@ end
 # サブドメインのVirtualHost設定
 #
 setup_subdomain "www" do
-	path "/vagrant/repo/2015/site"
+	path "/vagrant/repo/current/www"
 end
 setup_subdomain "circle" do
-	path "/vagrant/repo/site2016welcome"
+	path "/vagrant/repo/current/circle"
 end
 # admin
 setup_subdomain "admin" do
@@ -308,6 +310,13 @@ template "/var/www/admin/index.php" do
 	mode "644"
 	owner "apache"
 	group "apache"
+	action :create
+end
+cookbook_file '/var/www/admin/phpinfo.php' do
+	source 'phpinfo.php'
+	owner 'apache'
+	group 'apache'
+	mode '0644'
 	action :create
 end
 #
