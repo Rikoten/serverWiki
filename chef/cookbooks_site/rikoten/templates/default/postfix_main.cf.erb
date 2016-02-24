@@ -7,12 +7,16 @@ myhostname = <%= node[:core][:fqdn] %>
 myorigin = $mydomain
 inet_interfaces = all
 inet_protocols = all
-mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = ml.rikoten.com, $myhostname, localhost.$mydomain, localhost
 unknown_local_recipient_reject_code = 550
-alias_maps = hash:/etc/aliases
-alias_database = hash:/etc/aliases
 home_mailbox = Maildir/
 smtpd_banner = $myhostname ESMTP $mail_name
+
+# Mailman settings
+owner_request_special = no
+recipient_delimiter = +
+alias_maps = hash:/etc/aliases, hash:/etc/mailman/aliases
+alias_database = hash:/etc/aliases
 
 # SMTP settings
 smtp_tls_security_level = may

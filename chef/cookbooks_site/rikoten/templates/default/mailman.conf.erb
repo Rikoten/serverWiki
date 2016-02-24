@@ -1,0 +1,47 @@
+#
+#  httpd configuration settings for use with mailman.
+#
+
+<Directory "/usr/lib/mailman/cgi-bin/">
+	AllowOverride None
+	SSLRequireSSL
+	Options FollowSymLinks Multiviews ExecCGI
+	Require all granted
+</Directory>
+
+<VirtualHost *:80>
+	ServerName ml.rikoten.com
+	Redirect 403 /
+</VirtualHost>
+
+<VirtualHost *:443>
+	ScriptAlias /mailman/ /usr/lib/mailman/cgi-bin/
+	DocumentRoot /usr/lib/mailman/cgi-bin/
+	ServerName ml.rikoten.com
+	SSLEngine on
+	SSLCertificateFile /etc/letsencrypt/live/ml.rikoten.com/cert.pem
+	SSLCertificateKeyFile /etc/letsencrypt/live/ml.rikoten.com/privkey.pem
+	SSLCertificateChainFile /etc/letsencrypt/live/ml.rikoten.com/chain.pem
+	#
+	RedirectMatch ^/mailman[/]*$ https://ml.rikoten.com/mailman/listinfo
+</VirtualHost>
+
+#ScriptAlias /mailman/ /usr/lib/mailman/cgi-bin/
+#<Directory /usr/lib/mailman/cgi-bin/>
+#    AllowOverride None
+#    Options ExecCGI
+#    Require all granted
+#</Directory>
+
+#Alias /pipermail/ /var/lib/mailman/archives/public/
+#<Directory /var/lib/mailman/archives/public>
+#    Options MultiViews FollowSymLinks
+#    AllowOverride None
+#    Require all granted
+#    AddDefaultCharset Off
+#</Directory>
+
+# Uncomment the following line, replacing www.example.com with your server's
+# name, to redirect queries to /mailman to the listinfo page (recommended).
+
+# RedirectMatch ^/mailman[/]*$ http://ml.rikoten.com/mailman/listinfo

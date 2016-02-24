@@ -225,7 +225,7 @@ service "mysqld" do
 end
 
 # rootパスワード設定
-passForMySQL="Rikoten!5621Y"
+passForMySQL="RikotenMySQL"
 result = shell_out('MYSQL_PWD="'+passForMySQL+'" mysql -u root -N -e ""')
 unless result.exitstatus == 0 then
 	template "/etc/my.cnf" do
@@ -266,7 +266,7 @@ end
 bash 'apply_mysql_root_pass' do
 	user 'mysql'
 	code <<-EOC
-		MYSQL_PWD="#{passForMySQL}" mysql -u root -N -e "SET PASSWORD='#{passForMySQL}';" --connect-expired-password
+		MYSQL_PWD=#{passForMySQL} mysql -u root -N -e "SET PASSWORD='#{passForMySQL}';" --connect-expired-password
 	EOC
 	returns [0]
 	retries 3
@@ -352,6 +352,7 @@ template "/etc/postfix/master.cf" do
 	notifies :restart, "service[postfix]"
 	action :create
 end
+
 
 #
 # Dovecot(POP/IMAPサーバー)導入・設定
@@ -450,6 +451,32 @@ cookbook_file '/var/www/html/webmail/images/logo01.png' do
 	mode '0600'
 	action :create
 end
+
+#
+# mailman 導入・設定
+#
+yum_package "mailman" do
+	action :install
+end
+template "/etc/httpd/conf.d/mailman.conf" do
+	source "mailman.conf.erb"
+	mode "644"
+	owner "root"
+	group "root"
+	notifies :restart, "service[httpd]"
+	action :create
+end
+template "/etc/mailman/mm_cfg.py" do
+	source "mm_cfg.py.erb"
+	mode "644"
+	owner "root"
+	group "mailman"
+	#notifies :restart, "service[httpd]"
+	action :create
+end
+#service "mailman" do
+#	action [:enable, :start]
+#end
 
 #
 # munin(サーバー状態監視)導入・設定
