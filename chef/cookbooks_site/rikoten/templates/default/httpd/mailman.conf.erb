@@ -16,7 +16,7 @@
 
 <VirtualHost *:443>
 	ScriptAlias /mailman/ /usr/lib/mailman/cgi-bin/
-	DocumentRoot /usr/lib/mailman/cgi-bin/
+	DocumentRoot /var/www/ml
 	ServerName ml.rikoten.com
 	SSLEngine on
 	SSLCertificateFile /etc/letsencrypt/live/ml.rikoten.com/cert.pem

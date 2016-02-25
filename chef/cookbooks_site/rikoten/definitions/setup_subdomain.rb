@@ -9,9 +9,9 @@ define :setup_subdomain, :path => "/var/www/html", :requireSSL => false do
 	end
 	fqdnStr = params[:name] + '.' + node[:core][:fqdn] 
 	# 設定ファイル生成
-	srcName = "subdomain.conf.erb"
+	srcName = "httpd/subdomain.conf.erb"
 	if params[:requireSSL] then
-		srcName = "subdomain_sslonly.conf.erb"
+		srcName = "httpd/subdomain_sslonly.conf.erb"
 	end
 	template "/etc/httpd/conf.d/#{fqdnStr}.conf" do
 		source srcName

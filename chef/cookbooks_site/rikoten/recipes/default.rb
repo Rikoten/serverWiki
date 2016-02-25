@@ -1,4 +1,3 @@
-
 #
 # firewalldインストール
 #
@@ -170,15 +169,15 @@ yum_package "mod_ssl" do
 	action :install
 end
 template "/etc/httpd/conf/httpd.conf" do
-	source "httpd.conf.erb"
+	source "httpd/httpd.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
 	notifies :restart, "service[httpd]"
 	action :create
 end
-template "/var/www/html/index.php" do
-	source "index.php.erb"
+cookbook_file "/var/www/html/index.php" do
+	source "www/html/index.php"
 	mode "644"
 	owner "apache"
 	group "apache"
@@ -303,7 +302,7 @@ setup_subdomain "admin" do
 	requireSSL true
 end
 template "/var/www/admin/.htaccess" do
-	source "digest_auth_htaccess.erb"
+	source "httpd/digest_auth_htaccess.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -313,15 +312,15 @@ template "/var/www/admin/.htaccess" do
 		:authUserFile => "/etc/httpd/digestfile/admin"
 	})
 end
-template "/var/www/admin/index.php" do
-	source "admin_index.php.erb"
-	mode "644"
-	owner "apache"
-	group "apache"
+cookbook_file '/var/www/admin/index.php' do
+	source 'www/admin/index.php'
+	owner 'apache'
+	group 'apache'
+	mode '0644'
 	action :create
 end
 cookbook_file '/var/www/admin/phpinfo.php' do
-	source 'phpinfo.php'
+	source 'www/admin/phpinfo.php'
 	owner 'apache'
 	group 'apache'
 	mode '0644'
@@ -337,7 +336,7 @@ service "postfix" do
 	action [:enable]
 end
 template "/etc/postfix/main.cf" do
-	source "postfix_main.cf.erb"
+	source "postfix/main.cf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -345,7 +344,7 @@ template "/etc/postfix/main.cf" do
 	action :create
 end
 template "/etc/postfix/master.cf" do
-	source "postfix_master.cf.erb"
+	source "postfix/master.cf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -370,7 +369,7 @@ yum_package "cyrus-sasl-plain" do
 	action :install
 end
 template "/etc/dovecot/conf.d/10-mail.conf" do
-	source "dovecot_10-mail.conf.erb"
+	source "dovecot/10-mail.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -378,7 +377,7 @@ template "/etc/dovecot/conf.d/10-mail.conf" do
 	action :create
 end
 template "/etc/dovecot/conf.d/10-auth.conf" do
-	source "dovecot_10-auth.conf.erb"
+	source "dovecot/10-auth.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -386,7 +385,7 @@ template "/etc/dovecot/conf.d/10-auth.conf" do
 	action :create
 end
 template "/etc/dovecot/conf.d/10-ssl.conf" do
-	source "dovecot_10-ssl.conf.erb"
+	source "dovecot/10-ssl.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -394,7 +393,7 @@ template "/etc/dovecot/conf.d/10-ssl.conf" do
 	action :create
 end
 template "/etc/dovecot/conf.d/15-mailboxes.conf" do
-	source "dovecot_15-mailboxes.conf.erb"
+	source "dovecot/15-mailboxes.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -402,7 +401,7 @@ template "/etc/dovecot/conf.d/15-mailboxes.conf" do
 	action :create
 end
 template "/etc/dovecot.conf" do
-	source "dovecot.conf.erb"
+	source "dovecot/dovecot.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -458,8 +457,21 @@ end
 yum_package "mailman" do
 	action :install
 end
+directory '/var/www/ml' do
+	owner 'apache'
+	group 'apache'
+	mode '0755'
+	action :create
+end
+cookbook_file '/var/www/ml/index.php' do
+	source 'www/ml/index.php'
+	owner 'apache'
+	group 'apache'
+	mode '0644'
+	action :create
+end
 template "/etc/httpd/conf.d/mailman.conf" do
-	source "mailman.conf.erb"
+	source "httpd/mailman.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
@@ -500,7 +512,7 @@ directory '/var/www/admin/munin' do
 	action :create
 end
 template "/etc/httpd/conf.d/munin.conf" do
-	source "munin.conf.erb"
+	source "httpd/munin.conf.erb"
 	mode "644"
 	owner "apache"
 	group "apache"
@@ -508,7 +520,7 @@ template "/etc/httpd/conf.d/munin.conf" do
 	action :create
 end
 template "/etc/munin/munin.conf" do
-	source "munin_munin.conf.erb"
+	source "munin.conf.erb"
 	mode "644"
 	owner "root"
 	group "root"
