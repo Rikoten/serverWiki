@@ -286,6 +286,13 @@ cookbook_file '/etc/httpd/digestfile/admin' do
 	mode '0644'
 	action :create
 end
+cookbook_file '/etc/httpd/digestfile/ml' do
+	source 'ml_htdigest'
+	owner 'root'
+	group 'root'
+	mode '0644'
+	action :create
+end
 
 #
 # サブドメインのVirtualHost設定
@@ -469,6 +476,28 @@ cookbook_file '/var/www/ml/index.php' do
 	group 'apache'
 	mode '0644'
 	action :create
+end
+template "/var/www/ml/.htaccess" do
+	source "httpd/digest_auth_htaccess.erb"
+	mode "644"
+	owner "root"
+	group "root"
+	action :create
+	variables({
+		:authName => "ml.rikoten.com",
+		:authUserFile => "/etc/httpd/digestfile/ml"
+	})
+end
+template "/usr/lib/mailman/cgi-bin/.htaccess" do
+	source "httpd/digest_auth_htaccess.erb"
+	mode "644"
+	owner "root"
+	group "root"
+	action :create
+	variables({
+		:authName => "ml.rikoten.com",
+		:authUserFile => "/etc/httpd/digestfile/ml"
+	})
 end
 template "/etc/httpd/conf.d/mailman.conf" do
 	source "httpd/mailman.conf.erb"

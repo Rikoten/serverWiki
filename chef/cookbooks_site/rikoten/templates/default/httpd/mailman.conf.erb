@@ -3,7 +3,7 @@
 #
 
 <Directory "/usr/lib/mailman/cgi-bin/">
-	AllowOverride None
+	AllowOverride AuthConfig
 	SSLRequireSSL
 	Options FollowSymLinks Multiviews ExecCGI
 	Require all granted
