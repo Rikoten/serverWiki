@@ -1,8 +1,15 @@
 {
   "name": "local_vagrant",
-  "default_attributes":{
+  "override_attributes":{
     "core": {
       "fqdn": "local.rikoten.com"
+    },
+    "vhost_fqdn": {
+      "www":	"www.local.rikoten.com",
+      "circle":	"circle.local.rikoten.com",
+      "staff":	"staff.local.rikoten.com",
+      "wiki":	"wiki.local.rikoten.com",
+      "admin":  "admin.local.rikoten.com"
     }
   }
 }
