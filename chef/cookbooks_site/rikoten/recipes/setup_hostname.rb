@@ -15,6 +15,6 @@ script "set_host_name" do
 	interpreter "bash"
 	user "root"
 	cwd "/tmp"
-	code "hostname #{node[:fqdn]}"
+	code "hostname #{node[:core][:fqdn]}"
 end
 

@@ -8,7 +8,20 @@
     "recipe[rikoten::default]"
   ],
   "default_attributes": {
-
+    "core": {
+      "fqdn": "test.rikoten.com"
+    },
+    "vhost_fqdn": {
+      "www":	"www.test.rikoten.com",
+      "circle":	"circle.test.rikoten.com",
+      "staff":	"staff.test.rikoten.com",
+      "wiki":	"wiki.test.rikoten.com",
+      "admin":  "admin.test.rikoten.com",
+      "ml":	"ml.rikoten.com"
+    },
+    "mailinglist": {
+      "fqdn": "ml.rikoten.com"
+    }
   },
   "override_attributes": {
 

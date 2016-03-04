@@ -7,7 +7,8 @@ define :setup_subdomain, :path => "/var/www/html", :requireSSL => false do
 		recursive true
 		action :create
 	end
-	fqdnStr = params[:name] + '.' + node[:core][:fqdn] 
+	#fqdnStr = params[:name] + '.' + node[:core][:fqdn] 
+	fqdnStr = node[:vhost_fqdn][params[:name]]
 	# 設定ファイル生成
 	srcName = "httpd/subdomain.conf.erb"
 	if params[:requireSSL] then
