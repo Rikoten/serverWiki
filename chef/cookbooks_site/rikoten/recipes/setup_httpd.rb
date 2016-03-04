@@ -1,6 +1,15 @@
 #
 # apache(Webサーバー)導入・設定
 #
+
+remote_directory '/etc/httpd/fakecerts' do
+	source 'SSLCerts'
+	owner 'root'
+	group 'root'
+	mode '0644'
+	action :create
+end
+
 yum_package "httpd" do
 	action :install
 end
