@@ -31,7 +31,7 @@ cookbook_file "/var/www/html/index.php" do
 end
 
 service "httpd" do
-	action [:enable]
+	action [:enable, :start]
 end
 
 #
