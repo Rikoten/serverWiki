@@ -5,29 +5,12 @@
   "json_class": "Chef::Role",
 
   "run_list": [
-    "recipe[selinux::disabled]",
-    "recipe[rikoten]"
+    "recipe[rikoten::default]"
   ],
   "default_attributes": {
 
   },
   "override_attributes": {
-    "dovecot": {
-      "protocols": {
-        "imap": {
 
-        }
-      },
-      "auth": {
-        "system": {
-          "passdb": {
-            "driver": "pam"
-          },
-          "userdb": {
-            "driver": "passwd"
-          }
-        }
-      }
-    }
   }
 }
