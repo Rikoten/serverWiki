@@ -113,3 +113,12 @@ POSTFIX_STYLE_VIRTUAL_DOMAINS = [
 	'ml.rikoten.com'
 ]
 DEFAULT_URL_PATTERN = 'https://%s/mailman/'
+DEFAULT_GENERIC_NONMEMBER_ACTION = 0
+ALLOW_SITE_ADMIN_COOKIES = Yes
+DEFAULT_REQUIRE_EXPLICIT_DESTINATION = No
+DEFAULT_SUBJECT_PREFIX  = ""
+DEFAULT_MSG_FOOTER = """
+________________________________
+%(description)s
+%(real_name)s@%(host_name)s
+"""
