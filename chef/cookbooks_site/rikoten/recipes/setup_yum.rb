@@ -33,4 +33,14 @@ bash 'add_repo_remi' do
 	EOC
 	creates "/etc/yum.repos.d/remi.repo"
 end
+bash 'add_repo_atomic' do
+	user 'root'
+	cwd '/root'
+	code <<-EOC
+		wget -q -O - http://www.atomicorp.com/installers/atomic | sh
+		sed -i -e "s/enabled *= *1/enabled=0/g" /etc/yum.repos.d/atomic.repo
+	EOC
+	creates "/etc/yum.repos.d/atomic.repo"
+end
+
 
