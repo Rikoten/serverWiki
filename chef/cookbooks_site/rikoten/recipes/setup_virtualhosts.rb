@@ -41,6 +41,13 @@ setup_subdomain "circle" do
 end
 
 #
+# circle
+#
+setup_subdomain "staff" do
+	path "/vagrant/repo/current/staff"
+end
+
+#
 # admin
 #
 setup_subdomain "admin" do
