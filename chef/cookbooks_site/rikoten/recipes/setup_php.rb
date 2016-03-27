@@ -2,6 +2,11 @@
 # php導入・設定
 #
 
+yum_package "gd-last" do
+	action :install
+	options '--enablerepo=remi'
+end
+
 pkgs = [
 	"php",
 	"php-cli",
@@ -11,7 +16,8 @@ pkgs = [
 	"php-mysqlnd",
 	"php-xml",
 	"php-imap",
-	"php-mcrypt"
+	"php-mcrypt",
+	"php-gd"
 ]
 pkgs.each do |pkg|
 	yum_package pkg do
