@@ -2,7 +2,14 @@
 # php導入・設定
 #
 
+# needed by php-gd
 yum_package "gd-last" do
+	action :install
+	options '--enablerepo=remi'
+end
+
+# needed by php-pecl-zip(libzip.so.4())
+yum_package "libzip-last" do
 	action :install
 	options '--enablerepo=remi'
 end
@@ -17,7 +24,8 @@ pkgs = [
 	"php-xml",
 	"php-imap",
 	"php-mcrypt",
-	"php-gd"
+	"php-gd",
+	"php-pecl-zip"
 ]
 pkgs.each do |pkg|
 	yum_package pkg do
