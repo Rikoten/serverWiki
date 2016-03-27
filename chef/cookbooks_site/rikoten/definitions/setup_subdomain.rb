@@ -25,6 +25,7 @@ define :setup_subdomain, :path => "/var/www/html", :requireSSL => false do
 			:domain => fqdnStr,
 			:requireSSL => params[:requireSSL]
 		})
+		notifies :restart, "service[httpd]"
 	end
 
 end
