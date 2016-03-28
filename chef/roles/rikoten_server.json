@@ -12,13 +12,14 @@
       "fqdn": "test.rikoten.com"
     },
     "vhost_fqdn": {
-      "www":		"www.test.rikoten.com",
+      "www":		"www.rikoten.com",
       "circle":		"circle.rikoten.com",
       "staff":		"staff.test.rikoten.com",
       "wiki":		"wiki.test.rikoten.com",
       "admin":		"admin.test.rikoten.com",
       "ml":		"ml.rikoten.com",
-      "circle.test":	"circle.test.rikoten.com"
+      "circle.test":	"circle.test.rikoten.com",
+      "www.test":	"www.test.rikoten.com"
     },
     "mailinglist": {
       "fqdn": "ml.rikoten.com"

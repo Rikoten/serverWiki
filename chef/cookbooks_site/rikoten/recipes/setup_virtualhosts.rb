@@ -41,6 +41,13 @@ setup_subdomain "circle" do
 end
 
 #
+# www.test
+#
+setup_subdomain "www.test" do
+	path "/vagrant/repo/dev/www"
+end
+
+#
 # circle.test
 #
 setup_subdomain "circle.test" do
