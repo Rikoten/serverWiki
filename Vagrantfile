@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
   # あらかじめvagrant-omnibusというプラグインを導入することが必要です。
   # $ vagrant plugin vagrant-omnibus
   # で入ります。
-  config.omnibus.chef_version=:latest
+  #config.omnibus.chef_version=:latest
   
   # Chef Zeroで./chef以下の内容を仮想マシンに適用させます。
   # あらかじめvagrant-chef-zeroというプラグインを導入する必要があります。
@@ -45,16 +45,16 @@ Vagrant.configure(2) do |config|
   # また、仮想マシンが立ち上がった状態で
   # $ vagrant provision
   # を打つことでchefリポジトリの内容をを適用させることができます。
-  config.vm.provision "chef_zero" do |chef|
-    chef.cookbooks_path = [
-	  "./chef/cookbooks_site",
-      "./chef/berks-cookbooks"
-	]
-	chef.roles_path = "./chef/roles"
-	chef.environments_path = "./chef/environments"
-	chef.nodes_path = "./chef/nodes"
-	chef.add_role "rikoten_server"
-	chef.environment = "local_vagrant"
-	chef.node_name = "local.rikoten.com"
-  end
+  #config.vm.provision "chef_zero" do |chef|
+  #  chef.cookbooks_path = [
+#	  "./chef/cookbooks_site",
+#      "./chef/berks-cookbooks"
+#	]
+#	chef.roles_path = "./chef/roles"
+#	chef.environments_path = "./chef/environments"
+#	chef.nodes_path = "./chef/nodes"
+#	chef.add_role "rikoten_server"
+#	chef.environment = "local_vagrant"
+#	chef.node_name = "local.rikoten.com"
+#  end
 end
