@@ -52,6 +52,7 @@ Vagrant.configure(2) do |config|
 	]
 	chef.roles_path = "./chef/roles"
 	chef.environments_path = "./chef/environments"
+	chef.nodes_path = "./chef/nodes"
 	chef.add_role "rikoten_server"
 	chef.environment = "local_vagrant"
 	chef.node_name = "local.rikoten.com"
