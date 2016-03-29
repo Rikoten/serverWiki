@@ -1,0 +1,7 @@
+{
+	"id": "sort",
+	"password": "$1$QIdB1Wd3$yqQoGrpeHagM9vP0pbtup/",
+	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRi2uasZRxjLFowSrIMEbIfeqbHWJoGoB4uWYI8Mh/9tKFGr8f6NXrn7QAXyI73dSfwAygFswDd77gdBHwMp5eeLZB/MEgHlilhPjwVWvUF6NnAZIyaqxOs6bUMjxfRHfH78kAm00MJ8+729YbjYjQn56AcQ+50RX3sKqJ9EiraRpV7CzD3x119CPshqYwPrmEEq4+TJuWwyDxg3VoaZsHK+nBRo4ROpXVQJP6ogv5L3tcAwbjyEqBjfDe94RTfOeJhtw2Uleb38oJFfUM05RUNOsy6TgwtooqYxKdAret29lmLvAHO2bOVAEoeyMSVgoVZiN9Omz5E+n1CpHmJYOj vagrant@local.rikoten.com",
+	"locked": false,
+	"admin": true
+}
