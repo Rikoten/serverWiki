@@ -1,12 +1,7 @@
 {
 	"id": "zqzqpeasant",
 	"password": "$1$KpUc4B8C$SBsg3bt4hhWXJFHC61o8y1/",
-	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9vRw73FmeImFLJjX7oyVcIr6frE5veERtVJpB8yrM
-	y91JFuzwE50cGOVK0rrPJk6iRptCGgSl6VKajsrcYGLMbLJyei0TZuhz+Pj4R/Pib5RoeSLhBVwlnivw
-	KrYpd21JMcVEo4Y8n0ut4WJVJPdvzqWMYyfqqM3Jfq8sLY5QPZTfFynhBpOILl6GxWp+oarzDx5EfuYy
-	TF0992/9UxyBTaDuCBFIY7Q3KL0haWS52LjK3WfUmi5st5hiUI8sz8jOhbAZEgDkLydI93xo6ESIVAOS
-	gyD37lgMb+GD8XbiJjub0pnYSZM0UWQQQFxRVUcfSSI0rIiR7EeE4c6Sx9Qd vagrant@localhost.l
-	ocaldomain",
+	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9vRw73FmeImFLJjX7oyVcIr6frE5veERtVJpB8yrMy91JFuzwE50cGOVK0rrPJk6iRptCGgSl6VKajsrcYGLMbLJyei0TZuhz+Pj4R/Pib5RoeSLhBVwlnivwKrYpd21JMcVEo4Y8n0ut4WJVJPdvzqWMYyfqqM3Jfq8sLY5QPZTfFynhBpOILl6GxWp+oarzDx5EfuYyTF0992/9UxyBTaDuCBFIY7Q3KL0haWS52LjK3WfUmi5st5hiUI8sz8jOhbAZEgDkLydI93xo6ESIVAOSgyD37lgMb+GD8XbiJjub0pnYSZM0UWQQQFxRVUcfSSI0rIiR7EeE4c6Sx9Qd vagrant@localhost.localdomain",
 	"locked": false,
 	"admin": true
 }
