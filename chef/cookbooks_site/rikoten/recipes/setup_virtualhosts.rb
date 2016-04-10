@@ -27,20 +27,6 @@ end
 #
 
 #
-# www
-#
-setup_subdomain "www" do
-	path "/vagrant/repo/current/www"
-end
-
-#
-# circle
-#
-setup_subdomain "circle" do
-	path "/vagrant/repo/current/circle"
-end
-
-#
 # www.test
 #
 setup_subdomain "www.test" do
@@ -52,6 +38,27 @@ end
 #
 setup_subdomain "circle.test" do
 	path "/vagrant/repo/dev/circle"
+end
+
+#
+# wiki
+#
+setup_subdomain "wiki" do
+	path "/var/www/wiki"
+end
+
+#
+# www
+#
+setup_subdomain "www" do
+	path "/vagrant/repo/current/www"
+end
+
+#
+# circle
+#
+setup_subdomain "circle" do
+	path "/vagrant/repo/current/circle"
 end
 
 #
