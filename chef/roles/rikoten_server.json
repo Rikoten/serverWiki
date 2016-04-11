@@ -14,7 +14,7 @@
     "vhost_fqdn": {
       "www":		"www.rikoten.com",
       "circle":		"circle.rikoten.com",
-      "staff":		"staff.test.rikoten.com",
+      "staff":		"staff.rikoten.com",
       "wiki":		"wiki.rikoten.com",
       "admin":		"admin.test.rikoten.com",
       "ml":		"ml.rikoten.com",
