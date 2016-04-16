@@ -31,13 +31,21 @@ template "/etc/httpd/conf/httpd.conf" do
 	action :create
 end
 
-cookbook_file "/var/www/html/index.php" do
-	source "www/html/index.php"
-	mode "644"
-	owner "apache"
-	group "apache"
+remote_directory '/var/www/html' do
+	source 'www/html'
+	owner 'apache'
+	group 'apache'
+	mode '0755'
 	action :create
 end
+
+#cookbook_file "/var/www/html/index.php" do
+#	source "www/html/index.php"
+#	mode "644"
+#	owner "apache"
+#	group "apache"
+#	action :create
+#end
 
 service "httpd" do
 	action [:enable, :start]
