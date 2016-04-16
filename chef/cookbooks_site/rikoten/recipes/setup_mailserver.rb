@@ -84,7 +84,7 @@ end
 # SquirrelMail（Webメール）導入・設定
 #
 bash 'extract_sqmail' do
-	cwd "/var/www/html"
+	cwd "/var/www"
 	user "root"
 	group "root"
 	code <<-EOH
@@ -92,9 +92,9 @@ bash 'extract_sqmail' do
 		mv squirrelmail-webmail-1.4.22-ja webmail
 		chown -R apache:apache webmail
 	EOH
-	not_if { ::File.exists?("/var/www/html/webmail") }
+	not_if { ::File.exists?("/var/www/webmail") }
 end
-template "/var/www/html/webmail/config/config.php" do
+template "/var/www/webmail/config/config.php" do
 	source "squirrel_config.php.erb"
 	mode "755"
 	owner "apache"
@@ -114,12 +114,17 @@ directory '/var/local/squirrelmail/data' do
 	mode '0755'
 	action :create
 end
-cookbook_file '/var/www/html/webmail/images/logo01.png' do
+cookbook_file '/var/www/webmail/images/logo01.png' do
 	source 'logo01.png'
 	owner 'apache'
 	group 'apache'
 	mode '0600'
 	action :create
+end
+
+setup_subdomain "webmail" do
+	path "/var/www/webmail"
+	requireSSL true
 end
 
 #
