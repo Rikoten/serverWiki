@@ -1,12 +1,7 @@
 {
 	"id": "sort",
 	"password": "$1$QIdB1Wd3$yqQoGrpeHagM9vP0pbtup/",
-	"rsakey": "ssh-rsa 
-AAAAB3NzaC1yc2EAAAABJQAAAIEAqZ+IA0EasKL5u4bkTcghDNw5/ueFqdqTBOWw
-6ycGFS+V5GvW0I7/BUFVv4EYoJbLFVHx/wUVXGlLodDe/fTo3AUOOszJNSHaSwis
-m9TCfC0Qi6fnSPyjuG5rs4vlEZeP5HsR/8+3+cm4OQEhYJVeU7Z0CT02jlUTh2Uz
-R6j6rQs=
-",
+	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAqZ+IA0EasKL5u4bkTcghDNw5/ueFqdqTBOWw6ycGFS+V5GvW0I7/BUFVv4EYoJbLFVHx/wUVXGlLodDe/fTo3AUOOszJNSHaSwism9TCfC0Qi6fnSPyjuG5rs4vlEZeP5HsR/8+3+cm4OQEhYJVeU7Z0CT02jlUTh2UzR6j6rQs=",
 	"locked": false,
 	"admin": true
 }

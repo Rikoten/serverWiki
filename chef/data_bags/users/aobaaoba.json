@@ -1,8 +1,7 @@
 {
 	"id": "aobaaoba",
 	"password": "$1$lmc8pbzV$jUR6a.7QWwlv3lVPFsPGf1",
-	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/rx2qofkyebnU6oqs/P7qcwE+1f/1rthx3ffOaucU6P97QusjSjOmbVdsvHFNEfqk0R4DEHtNX0WKOdnUF0x33agOUNPkx2GBR05UeJ29PT3+xLuxEusptOnWU7qHmvgDKugc7eTuxPOrwMsIn47Do4qHoGbE3aYOWBp530GX9sFWSYpVk1ZPC+z8T68GFm1HykJL0lb25zDzAb+338sWIQoiEHyvFARXg1UdGrmJ5wd+om1rscKqzyINB6+SwY2wpZ16zad/HpukofUhuNWj1DC+bvtuJMBdTYS4oJb9L3VwKWZngI+oHzVwkYwQGptLYjIRG4OevZD5ArGKlRZJ aobaaoba@aobaaoba-pc
-",
+	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/rx2qofkyebnU6oqs/P7qcwE+1f/1rthx3ffOaucU6P97QusjSjOmbVdsvHFNEfqk0R4DEHtNX0WKOdnUF0x33agOUNPkx2GBR05UeJ29PT3+xLuxEusptOnWU7qHmvgDKugc7eTuxPOrwMsIn47Do4qHoGbE3aYOWBp530GX9sFWSYpVk1ZPC+z8T68GFm1HykJL0lb25zDzAb+338sWIQoiEHyvFARXg1UdGrmJ5wd+om1rscKqzyINB6+SwY2wpZ16zad/HpukofUhuNWj1DC+bvtuJMBdTYS4oJb9L3VwKWZngI+oHzVwkYwQGptLYjIRG4OevZD5ArGKlRZJ aobaaoba@aobaaoba-pc",
 	"locked": false,
 	"admin": true
 }
