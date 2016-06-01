@@ -15,11 +15,12 @@
       "www":		"www.rikoten.com",
       "circle":		"circle.rikoten.com",
       "staff":		"staff.rikoten.com",
+      "archive":	"archive.rikoten.com",
       "wiki":		"wiki.rikoten.com",
-      "admin":		"admin.test.rikoten.com",
-      "ml":		"ml.rikoten.com",
-      "webmail":        "webmail.rikoten.com",
-      "circle.test":	"circle.test.rikoten.com",
+      "admin":		"admin.rikoten.com",
+      "ml":			"ml.rikoten.com",
+      "webmail":	"webmail.rikoten.com",
+      "circle.test":"circle.test.rikoten.com",
       "www.test":	"www.test.rikoten.com"
     },
     "mailinglist": {

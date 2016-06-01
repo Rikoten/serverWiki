@@ -69,6 +69,13 @@ setup_subdomain "staff" do
 end
 
 #
+# archive
+#
+setup_subdomain "archive" do
+	path "/vagrant/repo/archive"
+end
+
+#
 # admin
 #
 setup_subdomain "admin" do
