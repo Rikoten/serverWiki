@@ -1,0 +1,7 @@
+{
+	"id": "noppino",
+	"password": "$1$LuGJt3rs$yh5mR8Ag2hgwkvTdYu6mf",
+	"rsakey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXo7NkmkvboeWcuGu3pgernjTOslZ/IIDmVOCd5g60CD11RjOT+qs2XBNQMJCBSfUv75jGKH3Zdo6Ya0lb7vs/OURgZN6rUFI67ykLwRBW0MaUTD5nmZiE2vgZz0bZfh00IUdv2IeTc/5Z6ax8hdq8Ei+hdwqH4tVMAKS2nSNpekDW+UzBwrT859QEVz+KciN7x7gB6a/uQMabyXx+RK1rA6SMY0aIzCpiDjQ+yZopRuSFp2FE+wNBjG3ohSeIx5f2gwJi6+IwI8+FH5+EpkozIToBq5SoIxanyNY6zBciTHlTbrXjA5UKfokMbcm/UKElVlqe1ZHAbaNL5gfuGsh/",
+	"locked": false,
+	"admin": true
+}
