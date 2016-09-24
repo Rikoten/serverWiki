@@ -1,0 +1,8 @@
+{
+  "name": "server_aws",
+  "override_attributes":{
+    "core": {
+      "fqdn": "rikoten.com"
+    }
+  }
+}

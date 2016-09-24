@@ -1,0 +1,8 @@
+{
+  "name": "server_test",
+  "default_attributes":{
+    "core": {
+      "fqdn": "test.rikoten.com"
+    }
+  }
+}

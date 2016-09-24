@@ -1,0 +1,27 @@
+<Directory "<%= @path %>">
+	Options FollowSymLinks Multiviews
+	AllowOverride All
+	Require all granted
+</Directory>
+
+<VirtualHost *:80>
+	ServerName <%= @domain %>
+	DocumentRoot <%= @path %>
+</VirtualHost>
+
+<% if File.exists?("/etc/letsencrypt/live/" + @domain + "/cert.pem") then %>
+<VirtualHost *:443>
+	DocumentRoot <%= @path %>
+	ServerName <%= @domain %>
+	SSLEngine on
+	SSLCertificateFile /etc/letsencrypt/live/<%= @domain %>/cert.pem
+	SSLCertificateKeyFile /etc/letsencrypt/live/<%= @domain %>/privkey.pem
+	SSLCertificateChainFile /etc/letsencrypt/live/<%= @domain %>/chain.pem
+</VirtualHost>
+<% else %>
+<VirtualHost *:443>
+	ServerName <%= @domain %>
+	Redirect 403 /
+</VirtualHost>
+<% end %>
+

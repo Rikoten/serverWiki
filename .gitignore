@@ -7,7 +7,7 @@
 
 # http://github.com/github/gitignore/blob/master/ChefCookbook.gitignore
 .vagrant
-/cookbooks
+chef/cookbooks
 
 # Bundler
 bin/*
@@ -15,3 +15,10 @@ bin/*
 
 .kitchen/
 .kitchen.local.yml
+
+repo/*
+chef/berks-cookbooks
+Berksfile.lock
+chef/cookbooks_site/rikoten/berks-cookbooks
+chef/.chef/local-mode-cache
+chef/nodes

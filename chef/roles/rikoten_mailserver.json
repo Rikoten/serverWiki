@@ -1,0 +1,17 @@
+{
+  "name": "rikoten_mailserver",
+  "description": "Mail server for rikoten.",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+
+  "run_list": [
+    "recipe[rikoten::default]",
+    "recipe[rikoten::setup_mailserver]"
+  ],
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  }
+}

@@ -1,0 +1,18 @@
+[mysqld]
+
+<%= @c_opt %>
+
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+# 以下の記述をしないと、360日でユーザーのパスワードは無効になる。
+default_password_lifetime= 0
+
+# パスワードポリシーを「8文字以上ならOK」にする（デフォルトだともっと厳しい）
+plugin-load=validate_password.so
+validate_password_policy= LOW

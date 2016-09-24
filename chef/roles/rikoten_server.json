@@ -1,0 +1,33 @@
+{
+  "name": "rikoten_server",
+  "description": "Server for rikoten.",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+
+  "run_list": [
+    "recipe[rikoten::default]"
+  ],
+  "default_attributes": {
+    "core": {
+      "fqdn": "test.rikoten.com"
+    },
+    "vhost_fqdn": {
+      "www":		"www.rikoten.com",
+      "circle":		"circle.rikoten.com",
+      "staff":		"staff.rikoten.com",
+      "archive":	"archive.rikoten.com",
+      "wiki":		"wiki.rikoten.com",
+      "admin":		"admin.rikoten.com",
+      "ml":			"ml.rikoten.com",
+      "webmail":	"webmail.rikoten.com",
+      "circle.test":"circle.test.rikoten.com",
+      "www.test":	"www.test.rikoten.com"
+    },
+    "mailinglist": {
+      "fqdn": "ml.rikoten.com"
+    }
+  },
+  "override_attributes": {
+
+  }
+}

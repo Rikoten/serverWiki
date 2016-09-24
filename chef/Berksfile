@@ -1,0 +1,5 @@
+source "https://api.berkshelf.com"
+
+cookbook 'firewalld', '~> 1.1.1'
+cookbook 'selinux', '~> 0.9.0'
+cookbook 'nodejs', '~> 2.4.4'
