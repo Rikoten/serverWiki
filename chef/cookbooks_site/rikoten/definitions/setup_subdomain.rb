@@ -6,6 +6,8 @@ define :setup_subdomain, :path => "/var/www/html", :requireSSL => false do
 		mode '0755'
 		recursive true
 		action :create
+		ignore_failure true
+		not_if { File.exists?(params[:path]) }
 	end
 	#fqdnStr = params[:name] + '.' + node[:core][:fqdn] 
 	fqdnStr = node[:vhost_fqdn][params[:name]]

@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
 
   # Vagrantのboxを指定します。自作した理工展用のboxです。
-  config.vm.box = "marmot1123/centos71-minimal"
+  config.vm.box = "rikoten/centos7"
 
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
