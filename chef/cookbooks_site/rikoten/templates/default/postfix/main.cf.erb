@@ -43,6 +43,12 @@ debugger_command =
 	 PATH=/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
 	 ddd $daemon_directory/$process_name $process_id & sleep 5
 
+# For OpenDKIM
+# http://kantaro-cgi.com/blog/etc-server/opendkim_setup.html
+smtpd_milters = inet:127.0.0.1:8891
+non_smtpd_milters = $smtpd_milters
+milter_default_action = accept
+
 # INSTALL-TIME CONFIGURATION INFORMATION
 sendmail_path = /usr/sbin/sendmail.postfix
 newaliases_path = /usr/bin/newaliases.postfix
