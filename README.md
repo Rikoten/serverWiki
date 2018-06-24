@@ -1,4 +1,5 @@
 # server
+![logo](https://github.com/Rikoten/server/wiki/images/rikotencloudplatform.png)
 Chefを用いて理工展のサーバーの設定を記述します。開発環境も設定できるようにします。
 
 ## 開発環境の構築
